@@ -31,29 +31,42 @@ public class Greet
             Language = command[2];
         }
 
+        Name = Name[0] + Name.Substring(1).ToLower();
         GreetPhrase = langPhrase[Language.ToLower()];
-        AddNameToDic(Name);
 
-        return $"{GreetPhrase} {Name[0]}{Name.Substring(1).ToLower()}";
-    }
-
-    // Add a name to list
-    public void AddNameToDic(string greetedName)
-    {
-        if(greetedNames.ContainsKey(greetedName))
+        // Adding name to dictionary
+        if(greetedNames.ContainsKey(Name))
         {
-            greetedNames[greetedName] += 1; 
+            greetedNames[Name] += 1; 
         }
         else
         {
-            greetedNames.Add(greetedName, 1);
+            greetedNames.Add(Name, 1);
         }
+
+        return $"{GreetPhrase} {Name}";
     }
 
-    // Return list of greeted names
-    public Dictionary<string, int> GetDic()
+    // List of greeted names
+    public Dictionary<string, int> Greeted()
     {
         return greetedNames;
     }
 
+    // return how many times a users has been greeted
+    public string GreetedTimes(string greetCommand, Dictionary<string, int> dictOfNames)
+    {
+        string[] command = greetCommand.ToUpper().Split(" ");
+        
+        if(command.Length == 2 && command[0] == "greeted")
+        {
+            Name = command[1];
+        }
+
+        //Name = Name[0] + Name.Substring(1).ToLower();
+
+        string res = $"{Name}: {dictOfNames[Name]}";
+
+        return Name;
+    }
 }
