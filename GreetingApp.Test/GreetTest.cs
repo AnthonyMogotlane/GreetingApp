@@ -3,6 +3,7 @@ namespace GreetingApp.Test;
 public class GreetTest
 {
     Greet greet = new Greet();
+
     [Fact]
     public void ShouldReturnAMessageGreetingTheUserWithSepedi()
     {
@@ -21,4 +22,16 @@ public class GreetTest
         Assert.Equal("Molo Makho", greet.GreetUser("greet makho isixhosa"));
     }
 
+    [Fact]
+    public void ShouldReturnAListOfAllNamesGreeted()
+    {
+        // When
+        greet.GreetUser("greet john sepedi");
+        greet.GreetUser("greet lebo english");
+        greet.GreetUser("greet phakamisa isixhosa");
+
+
+        // Then
+        Assert.Equal(greetedNames, greet.Greeted("greeted"));
+    }
 }
