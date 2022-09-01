@@ -71,8 +71,8 @@ public class GreetTest
         greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet Naledi sepedi");
-        greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet yonela sepedi");
+        greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet yonela sepedi");
         // Then
         Dictionary<string, int> greetedNames = new Dictionary<string, int>()
@@ -81,7 +81,106 @@ public class GreetTest
             {"Yonela", 2}
         };
 
-        //Assert.Equal("Yonela: 2", greet.GreetedTimes("greeted yonela", greetedNames));
+        Assert.Equal("Yonela: 2", greet.GreetedTimes("greeted yonela", greetedNames));
         Assert.Equal("Naledi: 4", greet.GreetedTimes("greeted naledi", greetedNames));
     }
+
+    [Fact]
+    public void ShouldReturnHowManyUniqueUsersHaveBeenGreeted()
+    {
+        // When
+        greet.GreetUser("greet Somizi sepedi");
+        greet.GreetUser("greet Rocki sepedi");
+        greet.GreetUser("greet john sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        greet.GreetUser("greet Naledi sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        // Then
+        Dictionary<string, int> greetedNames = new Dictionary<string, int>()
+        {
+            {"Naledi", 1},
+            {"Yonela", 2},
+            {"Somizi", 1},
+            {"Rocki", 1},
+            {"John", 1},
+        };
+
+        Assert.Equal(5, greet.Counter(greetedNames));
+    }
+
+    [Fact]
+    public void ShouldDeleteAllGreetedNamesAndResetCounter()
+    {
+        // When
+        greet.GreetUser("greet Somizi sepedi");
+        greet.GreetUser("greet Rocki sepedi");
+        greet.GreetUser("greet john sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        greet.GreetUser("greet Naledi sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        // Then
+        // Dictionary<string, int> greetedNames = new Dictionary<string, int>()
+        // {
+        //     {"Naledi", 1},
+        //     {"Yonela", 2},
+        //     {"Somizi", 1},
+        //     {"Rocki", 1},
+        //     {"John", 1},
+        // };
+
+        Assert.Equal(5, greet.Counter(greet.Greeted()));
+    }
+
+    [Fact]
+    public void ShouldBeAbleToClearTheGreetedNamesFromTheListAndClearTheCount()
+    {
+        // When
+        greet.GreetUser("greet Somizi sepedi");
+        greet.GreetUser("greet Rocki sepedi");
+        greet.GreetUser("greet john sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        greet.GreetUser("greet Naledi sepedi");
+        greet.GreetUser("greet yonela sepedi");
+
+        //  Dictionary<string, int> greetedNames = new Dictionary<string, int>()
+        // {
+        //     {"Naledi", 1},
+        //     {"Yonela", 2},
+        //     {"Somizi", 1},
+        //     {"Rocki", 1},
+        //     {"John", 1},
+        // };
+
+        // Then
+        Dictionary<string, int> emptyDic = new Dictionary<string, int>();
+
+        Assert.Equal(emptyDic, greet.Clear(greet.Greeted()));
+    }
+
+    [Fact]
+    public void ShouldBeAbleToClearANameFromTheGreetedNames()
+    {
+        // When
+        greet.GreetUser("greet Somizi sepedi");
+        greet.GreetUser("greet Rocki sepedi");
+        greet.GreetUser("greet john sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        greet.GreetUser("greet Naledi sepedi");
+        greet.GreetUser("greet yonela sepedi");
+
+        // Then
+        Assert.Equal("Naledi has been removed from the list", greet.ClearName("clear naledi", greet.Greeted()));
+        Assert.Equal(4, greet.Counter(greet.Greeted()));
+
+        Dictionary<string, int> greetedNames = new Dictionary<string, int>()
+        {
+            {"Somizi", 1},
+            {"Rocki", 1},
+            {"John", 1},
+            {"Yonela", 2},
+        };
+
+        Assert.Equal(JsonSerializer.Serialize(greetedNames), JsonSerializer.Serialize(greet.Greeted()));
+    }
+
 }
