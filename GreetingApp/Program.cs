@@ -19,7 +19,8 @@ while(runApp == true)
     Console.ForegroundColor = ConsoleColor.Green;
 
     if(enteredCommand == "exit")
-    {
+    {   
+        Console.WriteLine("Thank you for using the greeting app developed by @anthony.");
         runApp = false;
     }
     else if(enteredCommand == "help")
@@ -36,9 +37,17 @@ while(runApp == true)
     }
     else if(enteredCommand == "greeted")
     {
-        foreach (var nameCount in greet.Greeted())
+        if(greet.Greeted().Count() != 0)
         {
-            Console.WriteLine( $"{nameCount.Key}: {nameCount.Value}");  
+            Console.WriteLine(">");
+            foreach (var nameCount in greet.Greeted())
+            {
+                Console.WriteLine($"  {nameCount.Key}: {nameCount.Value}");  
+            }
+        }
+        else
+        {
+            Console.WriteLine("No user has been greeted, list is empty.");
         }
     }
     else if(enteredCommand.Split(" ")[0] == "greeted" && enteredCommand.Split(" ").Length == 2)
@@ -47,20 +56,20 @@ while(runApp == true)
     }
     else if(enteredCommand == "counter")
     {
-        Console.WriteLine($"{greet.Counter(greet.Greeted())} user/s have been greeted");
+        Console.WriteLine($"> {greet.Counter(greet.Greeted())} user/s have been greeted.");
     }
     else if(enteredCommand == "clear")
     {
         greet.Clear(greet.Greeted());
-        Console.WriteLine("> The names has been cleared...");
+        Console.WriteLine("> The names has been cleared from the list.");
     }
     else if(enteredCommand.Split(" ")[0] == "clear" && enteredCommand.Split(" ").Length == 2)
     {
-        Console.WriteLine(greet.ClearName(enteredCommand, greet.Greeted()));
+        Console.WriteLine("> " + greet.ClearName(enteredCommand, greet.Greeted()));
     }
     else
     {
-        Console.WriteLine($"Invalid command: {enteredCommand} is not defined.\nType 'help' for information on how to use the app.");
+        Console.WriteLine($"> Invalid command: '{enteredCommand}' is not defined.\n  Type 'help' for information on how to use the app.");
     }
 }
 
