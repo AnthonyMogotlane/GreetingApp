@@ -24,13 +24,17 @@ public class Greet
             {"isixhosa", "Molo"}
         };
 
-        string[] command = greetCommand.ToUpper().Split(" ");
+        string[] command = greetCommand.ToUpper().Trim().Split(" ");
 
         Name = command[1];
         
-        if(command.Length == 3)
+        if(command.Length == 3 && langPhrase.ContainsKey(command[2].ToLower()))
         {
-            Language = command[2] != "" ? command[2] : "english";
+            Language = command[2];
+        }
+        else if(command.Length == 3 && !langPhrase.ContainsKey(command[2].ToLower()))
+        {
+            return $"'{command[2].ToLower()}' language is not recognised by the app.";
         }
 
         Name = Name[0] + Name.Substring(1).ToLower();
@@ -96,15 +100,20 @@ public class Greet
     // Clear name
     public string ClearName(string clearCommand, Dictionary<string, int> dic)
     {
-
         string[] command = clearCommand.ToUpper().Split(" ");
 
         Name = command[1];
         Name = Name[0] + Name.Substring(1).ToLower();
 
-        dic.Remove(Name);
-
-        return $"{Name} has been removed from the list";
+        if(dic.ContainsKey(Name))
+        {
+            dic.Remove(Name);
+            return $"{Name} has been removed from the list";
+        }
+        else
+        {
+            return $"'{Name}' is not on the list, type 'greeted' to see greeted users.";
+        }
     }
     
 }
