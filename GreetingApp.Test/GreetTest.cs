@@ -14,15 +14,15 @@ public class GreetTest
     }
 
     [Fact]
-    public void ShouldReturnAMessageGreetingTheUserWithEnglish()
-    {
-        Assert.Equal("Hello Andre", greet.GreetUser("greet Andre english"));
-    }
-
-    [Fact]
     public void ShouldReturnAMessageGreetingTheUserWithIsixhsa()
     {
         Assert.Equal("Molo Makho", greet.GreetUser("greet makho isixhosa"));
+    }
+
+    [Fact]
+    public void ShouldBeAbleToGreetAUserWithADefaultLanguage()
+    {
+        Assert.Equal("Hello Andre", greet.GreetUser("greet Andre"));
     }
 
     [Fact]
@@ -74,15 +74,26 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
         greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet yonela sepedi");
-        // Then
-        Dictionary<string, int> greetedNames = new Dictionary<string, int>()
-        {
-            {"Naledi", 4},
-            {"Yonela", 2}
-        };
 
-        Assert.Equal("Yonela: 2", greet.GreetedTimes("greeted yonela", greetedNames));
-        Assert.Equal("Naledi: 4", greet.GreetedTimes("greeted naledi", greetedNames));
+        // Then
+        Assert.Equal("'Yonela' has been greeted 2 time/s", greet.GreetedTimes("greeted yonela", greet.Greeted()));
+        Assert.Equal("'Naledi' has been greeted 4 time/s", greet.GreetedTimes("greeted naledi", greet.Greeted()));
+    }
+
+     [Fact]
+    public void ShouldBeAbleToTellIfTheUserWasNotGreeted()
+    {
+        // When
+        greet.GreetUser("greet Senzo sepedi");
+        greet.GreetUser("greet koki sepedi");
+        greet.GreetUser("greet koki sepedi");
+        greet.GreetUser("greet yonela sepedi");
+        greet.GreetUser("greet Dora sepedi");
+        greet.GreetUser("greet yonela sepedi");
+
+        // Then
+        Assert.Equal("Sorry 'Cara' hasn't been greeted", greet.GreetedTimes("greeted Cara", greet.Greeted()));
+        Assert.Equal("Sorry 'Nalo' hasn't been greeted", greet.GreetedTimes("greeted nalo", greet.Greeted()));
     }
 
     [Fact]
@@ -95,6 +106,7 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
         greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet yonela sepedi");
+
         // Then
         Dictionary<string, int> greetedNames = new Dictionary<string, int>()
         {
@@ -118,16 +130,8 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
         greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet yonela sepedi");
-        // Then
-        // Dictionary<string, int> greetedNames = new Dictionary<string, int>()
-        // {
-        //     {"Naledi", 1},
-        //     {"Yonela", 2},
-        //     {"Somizi", 1},
-        //     {"Rocki", 1},
-        //     {"John", 1},
-        // };
 
+        // Then
         Assert.Equal(5, greet.Counter(greet.Greeted()));
     }
 
@@ -141,15 +145,6 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
         greet.GreetUser("greet Naledi sepedi");
         greet.GreetUser("greet yonela sepedi");
-
-        //  Dictionary<string, int> greetedNames = new Dictionary<string, int>()
-        // {
-        //     {"Naledi", 1},
-        //     {"Yonela", 2},
-        //     {"Somizi", 1},
-        //     {"Rocki", 1},
-        //     {"John", 1},
-        // };
 
         // Then
         Dictionary<string, int> emptyDic = new Dictionary<string, int>();

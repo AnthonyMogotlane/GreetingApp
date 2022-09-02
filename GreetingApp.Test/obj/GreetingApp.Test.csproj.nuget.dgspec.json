@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj": {}
+    "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj": {}
   },
   "projects": {
-    "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj": {
+    "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj",
+        "projectUniqueName": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj",
         "projectName": "GreetingApp.Test",
-        "projectPath": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj",
-        "packagesPath": "/home/codex/.nuget/packages/",
-        "outputPath": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp.Test/obj/",
+        "projectPath": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp.Test/GreetingApp.Test.csproj",
+        "packagesPath": "/home/dev/.nuget/packages/",
+        "outputPath": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp.Test/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codex/.nuget/NuGet/NuGet.Config"
+          "/home/dev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
@@ -26,8 +26,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp/GreetingApp.csproj": {
-                "projectPath": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp/GreetingApp.csproj"
+              "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp/GreetingApp.csproj": {
+                "projectPath": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp/GreetingApp.csproj"
               }
             }
           }
@@ -83,17 +83,17 @@
         }
       }
     },
-    "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp/GreetingApp.csproj": {
+    "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp/GreetingApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp/GreetingApp.csproj",
+        "projectUniqueName": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp/GreetingApp.csproj",
         "projectName": "GreetingApp",
-        "projectPath": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp/GreetingApp.csproj",
-        "packagesPath": "/home/codex/.nuget/packages/",
-        "outputPath": "/home/codex/Desktop/decesion-inc/projects/GreetingConsoleApp/GreetingApp/obj/",
+        "projectPath": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp/GreetingApp.csproj",
+        "packagesPath": "/home/dev/.nuget/packages/",
+        "outputPath": "/home/dev/Desktop/codex/decision-inc/GreetingConsoleApp/GreetingApp/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/home/codex/.nuget/NuGet/NuGet.Config"
+          "/home/dev/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
