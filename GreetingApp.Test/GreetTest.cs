@@ -26,6 +26,12 @@ public class GreetTest
     }
 
     [Fact]
+    public void ShouldBeAbleToNotifyTheUserIfTheLanguageIsNotRecognised()
+    {
+        Assert.Equal("'englisho' language is not recognised by the app.", greet.GreetUser("greet Sapho englisho"));
+    }
+
+    [Fact]
     public void ShouldReturnAListOfAllNamesGreeted()
     {
         // When
