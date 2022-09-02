@@ -1,5 +1,8 @@
 ﻿using GreetingApp;
 
+// Greeting App
+Console.WriteLine("Welcome to Greeting App\nType 'help' for information on how to use the app.");
+
 // Instance of Greet
 Greet greet = new Greet();
 
@@ -7,14 +10,13 @@ bool runApp = true;
 
 while(runApp == true)
 {
-    // Greeting App
+    Console.ResetColor();  
     // Prompt user to "Enter a command"
-    Console.WriteLine();
-    Console.WriteLine("Enter a command");
+    Console.Write("Enter a command > ");
 
     // User input command
     string? enteredCommand = Console.ReadLine().ToLower();
-    
+    Console.ForegroundColor = ConsoleColor.Green;
 
     if(enteredCommand == "exit")
     {
@@ -28,7 +30,7 @@ while(runApp == true)
             Console.WriteLine($"  {command}");
         }
     }
-    else if(enteredCommand.Split(" ")[0] == "greet" && enteredCommand.Split(" ").Length == 2)
+    else if(enteredCommand.Split(" ")[0] == "greet" && enteredCommand.Split(" ").Length >= 2)
     {
         Console.WriteLine("> " + greet.GreetUser(enteredCommand));
     }
@@ -45,12 +47,12 @@ while(runApp == true)
     }
     else if(enteredCommand == "counter")
     {
-        Console.WriteLine(greet.Counter(greet.Greeted()));
+        Console.WriteLine($"{greet.Counter(greet.Greeted())} user/s have been greeted");
     }
     else if(enteredCommand == "clear")
     {
         greet.Clear(greet.Greeted());
-        Console.WriteLine("The names has been cleared...");
+        Console.WriteLine("> The names has been cleared...");
     }
     else if(enteredCommand.Split(" ")[0] == "clear" && enteredCommand.Split(" ").Length == 2)
     {
@@ -58,7 +60,7 @@ while(runApp == true)
     }
     else
     {
-        Console.WriteLine("Invalid command");
+        Console.WriteLine($"Invalid command: {enteredCommand} is not defined.\nType 'help' for information on how to use the app.");
     }
 }
 
