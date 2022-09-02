@@ -28,10 +28,14 @@ public class Greet
 
         Name = command[1];
         
-        if(command.Length == 3) Language = command[2];
+        if(command.Length == 3)
+        {
+            Language = command[2] != "" ? command[2] : "english";
+        }
 
         Name = Name[0] + Name.Substring(1).ToLower();
         GreetPhrase = langPhrase[Language.ToLower()];
+       
 
         // Adding name to dictionary
         if(greetedNames.ContainsKey(Name))
@@ -43,6 +47,7 @@ public class Greet
             greetedNames.Add(Name, 1);
         }
 
+        Language = "english";
         return $"{GreetPhrase} {Name}";
     }
 
@@ -56,16 +61,19 @@ public class Greet
     public string GreetedTimes(string greetCommand, Dictionary<string, int> dictOfNames)
     {
         string[] command = greetCommand.ToUpper().Split(" ");
-        
-        // if(command.Length == 2 && command[0] == "greeted")
-        // {
-        //     Name = command[1];
-        // }
+        string res = string.Empty;
 
         Name = command[1];
         Name = Name[0] + Name.Substring(1).ToLower();
 
-        string res = $"{Name}: {dictOfNames[Name]}";
+        if(dictOfNames.ContainsKey(Name))
+        {
+            res = $"'{Name}' has been greeted {dictOfNames[Name]} time/s";
+        }
+        else
+        {
+            res = $"Sorry '{Name}' hasn't been greeted";
+        }
 
         return res;
     }
