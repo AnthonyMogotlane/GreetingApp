@@ -82,8 +82,8 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
 
         // Then
-        Assert.Equal("'Yonela' has been greeted 2 time/s", greet.GreetedTimes("greeted yonela", greet.Greeted()));
-        Assert.Equal("'Naledi' has been greeted 4 time/s", greet.GreetedTimes("greeted naledi", greet.Greeted()));
+        Assert.Equal("'Yonela' has been greeted 2 time/s", greet.GreetedTimes("greeted yonela"));
+        Assert.Equal("'Naledi' has been greeted 4 time/s", greet.GreetedTimes("greeted naledi"));
     }
 
      [Fact]
@@ -98,8 +98,8 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
 
         // Then
-        Assert.Equal("Sorry 'Cara' hasn't been greeted", greet.GreetedTimes("greeted Cara", greet.Greeted()));
-        Assert.Equal("Sorry 'Nalo' hasn't been greeted", greet.GreetedTimes("greeted nalo", greet.Greeted()));
+        Assert.Equal("Sorry 'Cara' hasn't been greeted", greet.GreetedTimes("greeted Cara"));
+        Assert.Equal("Sorry 'Nalo' hasn't been greeted", greet.GreetedTimes("greeted nalo"));
     }
 
     [Fact]
@@ -123,7 +123,7 @@ public class GreetTest
             {"John", 1},
         };
 
-        Assert.Equal(5, greet.Counter(greetedNames));
+        Assert.Equal(5, greet.Counter());
     }
 
     [Fact]
@@ -138,7 +138,7 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
 
         // Then
-        Assert.Equal(5, greet.Counter(greet.Greeted()));
+        Assert.Equal(5, greet.Counter());
     }
 
     [Fact]
@@ -153,9 +153,9 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
 
         // Then
-        Dictionary<string, int> emptyDic = new Dictionary<string, int>();
-
-        Assert.Equal(emptyDic, greet.Clear(greet.Greeted()));
+        //Dictionary<string, int> emptyDic = new Dictionary<string, int>();
+        greet.Clear();
+        Assert.Equal(0, greet.Greeted().Count());
     }
 
     [Fact]
@@ -170,8 +170,8 @@ public class GreetTest
         greet.GreetUser("greet yonela sepedi");
 
         // Then
-        Assert.Equal("Naledi has been removed from the list", greet.ClearName("clear naledi", greet.Greeted()));
-        Assert.Equal(4, greet.Counter(greet.Greeted()));
+        Assert.Equal("Naledi has been removed from the list", greet.ClearName("clear naledi"));
+        Assert.Equal(4, greet.Counter());
 
         Dictionary<string, int> greetedNames = new Dictionary<string, int>()
         {
