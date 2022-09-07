@@ -1,13 +1,13 @@
 namespace GreetingApp;
 
-public class Greet
+public class Greet : IGreet
 {
-    public string Name {get; set;} = string.Empty;
-    public string Language {get; set;} = "english";
-    public string GreetPhrase {get; set;} = "Hello";
-    public int Count {get; set;}
-    
-    Dictionary<string, int> greetedNames;
+    private string Name { get; set; } = string.Empty;
+    private string Language { get; set; } = "english";
+    private string GreetPhrase { get; set; } = "Hello";
+    private int Count { get; set; }
+
+    private Dictionary<string, int> greetedNames;
 
     public Greet()
     {
@@ -27,24 +27,24 @@ public class Greet
         string[] command = greetCommand.ToUpper().Trim().Split(" ");
 
         Name = command[1];
-        
-        if(command.Length == 3 && langPhrase.ContainsKey(command[2].ToLower()))
+
+        if (command.Length == 3 && langPhrase.ContainsKey(command[2].ToLower()))
         {
             Language = command[2];
         }
-        else if(command.Length == 3 && !langPhrase.ContainsKey(command[2].ToLower()))
+        else if (command.Length == 3 && !langPhrase.ContainsKey(command[2].ToLower()))
         {
             return $"'{command[2].ToLower()}' language is not recognised by the app.";
         }
 
         Name = Name[0] + Name.Substring(1).ToLower();
         GreetPhrase = langPhrase[Language.ToLower()];
-       
+
 
         // Adding name to dictionary
-        if(greetedNames.ContainsKey(Name))
+        if (greetedNames.ContainsKey(Name))
         {
-            greetedNames[Name] += 1; 
+            greetedNames[Name] += 1;
         }
         else
         {
@@ -62,7 +62,7 @@ public class Greet
     }
 
     // return how many times a users has been greeted
-    public string GreetedTimes(string greetCommand, Dictionary<string, int> dictOfNames)
+    public string GreetedTimes(string greetCommand)
     {
         string[] command = greetCommand.ToUpper().Split(" ");
         string res = string.Empty;
@@ -70,9 +70,9 @@ public class Greet
         Name = command[1];
         Name = Name[0] + Name.Substring(1).ToLower();
 
-        if(dictOfNames.ContainsKey(Name))
+        if (greetedNames.ContainsKey(Name))
         {
-            res = $"'{Name}' has been greeted {dictOfNames[Name]} time/s";
+            res = $"'{Name}' has been greeted {greetedNames[Name]} time/s";
         }
         else
         {
@@ -83,31 +83,30 @@ public class Greet
     }
 
     // Counter
-    public int Counter(Dictionary<string, int> greetedNames)
+    public int Counter()
     {
         Count = greetedNames.Count();
         return Count;
     }
 
     // Clear List
-    public Dictionary<string, int> Clear(Dictionary<string, int> dic)
+    public void Clear()
     {
-        dic.Clear();
-        Count = dic.Count();
-        return dic;
+        greetedNames.Clear();
+        Count = greetedNames.Count();
     }
 
     // Clear name
-    public string ClearName(string clearCommand, Dictionary<string, int> dic)
+    public string ClearName(string clearCommand)
     {
         string[] command = clearCommand.ToUpper().Split(" ");
 
         Name = command[1];
         Name = Name[0] + Name.Substring(1).ToLower();
 
-        if(dic.ContainsKey(Name))
+        if (greetedNames.ContainsKey(Name))
         {
-            dic.Remove(Name);
+            greetedNames.Remove(Name);
             return $"{Name} has been removed from the list";
         }
         else
@@ -115,5 +114,5 @@ public class Greet
             return $"'{Name}' is not on the list, type 'greeted' to see greeted users.";
         }
     }
-    
+
 }

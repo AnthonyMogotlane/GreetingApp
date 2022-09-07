@@ -1,15 +1,23 @@
 ﻿using GreetingApp;
+using Dapper;
+using Npgsql;
 
 // Greeting App
 Console.WriteLine("Welcome to Greeting App\nType 'help' for information on how to use the app.");
 
+// Connection string
+string cs = "Server=heffalump.db.elephantsql.com;Port=5432;Database=xbixatua;UserId=xbixatua;Password=MZpFuYnavsnJw65QqMIG9JtHM29yqMz6";
+
+
 // Instance of Greet
-Greet greet = new Greet();
+// IGreet greet = new Greet();
+IGreet greet = new GreetWithDB(cs);
 
 bool runApp = true;
 
 while(runApp == true)
 {
+
     Console.ResetColor();  
     // Prompt user to "Enter a command"
     Console.Write("Enter a command > ");
@@ -52,20 +60,21 @@ while(runApp == true)
     }
     else if(enteredCommand.Split(" ")[0] == "greeted" && enteredCommand.Split(" ").Length == 2)
     {
-        Console.WriteLine("> " + greet.GreetedTimes(enteredCommand, greet.Greeted()));
+        Console.WriteLine("> " + greet.GreetedTimes(enteredCommand));
     }
     else if(enteredCommand == "counter")
     {
-        Console.WriteLine($"> {greet.Counter(greet.Greeted())} user/s have been greeted.");
+        Console.WriteLine($"> {greet.Counter()} user/s have been greeted.");
     }
     else if(enteredCommand == "clear")
     {
-        greet.Clear(greet.Greeted());
+        greet.Clear();
         Console.WriteLine("> The names has been cleared from the list.");
     }
     else if(enteredCommand.Split(" ")[0] == "clear" && enteredCommand.Split(" ").Length == 2)
     {
-        Console.WriteLine("> " + greet.ClearName(enteredCommand, greet.Greeted()));
+        Console.WriteLine("> " + greet.ClearName(enteredCommand));
+        
     }
     else
     {
