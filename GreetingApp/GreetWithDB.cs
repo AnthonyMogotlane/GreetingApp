@@ -49,7 +49,17 @@ public class GreetWithDB : IGreet
             );
         }
 
-        return "Stored '" + firstName + "' into DB";
+        Dictionary<string, string> langPhrase = new Dictionary<string, string>()
+        {
+            {"english", "Hello"},
+            {"sepedi", "Dumela"},
+            {"isixhosa", "Molo"},
+            {"zulu", "Siyaubona"}
+
+        };
+
+        string greetPhrase = greetCommand.Split(" ").Length == 3 ? langPhrase[greetCommand.Split("  ")[2]] : "Hello";
+        return $"{greetPhrase} {firstName}";
     }
     public Dictionary<string, int> Greeted()
     {
