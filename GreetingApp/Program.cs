@@ -6,8 +6,7 @@ using Npgsql;
 Console.WriteLine("Welcome to Greeting App\nType 'help' for information on how to use the app.");
 
 // Connection string
-string cs = "Server=heffalump.db.elephantsql.com;Port=5432;Database=xbixatua;UserId=xbixatua;Password=MZpFuYnavsnJw65QqMIG9JtHM29yqMz6";
-
+string cs = "";
 
 // Instance of Greet
 // IGreet greet = new Greet();
